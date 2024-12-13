@@ -17,31 +17,31 @@
            </form>
 
            <% if (!currentWeather && !forecast && !error) { %>
-           <h2 style="color: green; padding: 20px; background-color: aquamarine;">Input your city name to get weather information👆</h2>
+               <h2 style="color: green; padding: 20px; background-color: aquamarine;">Input your city name to get weather information👆</h2>
            <% } %>
 
            <% if (currentWeather) { %>
            <div class="current-weather">
-            <h2>Current Weather in <%= currentWeather.city %>:</h2>
-            <p>Temperature: <%= currentWeather.temperature %> °C</p>
-            <p>Feels Like: <%= currentWeather.feels_like %> °C</p> <!-- Display feels-like temperature -->
-            <p>Description: <%= currentWeather.description %></p>
-            <p>Humidity: <%= currentWeather.humidity %>%</p>       <!-- Display humidity -->
-            <p>Wind Speed: <%= currentWeather.windSpeed %> m/s</p> <!-- Display wind speed -->
+               <h2>Current Weather in <%= currentWeather.city %>:</h2>
+               <p>Temperature: <%= currentWeather.temperature %> °C</p>
+               <p>Feels Like: <%= currentWeather.feels_like %> °C</p>
+               <p>Description: <%= currentWeather.description %></p>
+               <p>Humidity: <%= currentWeather.humidity %>%</p>
+               <p>Wind Speed: <%= currentWeather.windSpeed %> m/s</p>
            </div>
            <% } %>
 
-           <% if (forecast) { %>
+           <% if (forecast && forecast.items.length > 0) { %>
             <div class="weather-info">
                 <h2>Weather forecast for <%= forecast.city %>:</h2>
                 <div class="forecast-container">
-                    <% forecast.items.forEach(forecast => { %>
+                    <% forecast.items.forEach(item => { %>
                         <div class="forecast-item">
-                            <h4><%= forecast.date %></h4>
-                            <p>Temp: <%= forecast.temperature %> °C</p>
-                            <p>Description: <%= forecast.description %></p>
-                            <p>Humidity: <%= forecast.humidity %>%</p>
-                            <p>Wind: <%= forecast.windSpeed %> m/s</p>
+                            <h4><%= item.date %></h4>
+                            <p>Temp: <%= item.temperature %> °C</p>
+                            <p>Description: <%= item.description %></p>
+                            <p>Humidity: <%= item.humidity %>%</p>
+                            <p>Wind: <%= item.windSpeed %> m/s</p>
                         </div>
                     <% }); %>
                 </div>

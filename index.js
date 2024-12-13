@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Home route
 app.get("/", (req, res) => {
-    res.render("index.ejs", { weather: null, error: null });
+    res.render("index.ejs", { currentWeather: null, forecast: null, error: null });
 });
 
 // Weather route
@@ -66,6 +66,7 @@ app.post("/weather", async (req, res) => {
        });
    }
 });
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
