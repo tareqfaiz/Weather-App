@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>🌍Tareq App</title>
+   <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+   <div class="wrapper">
+       <main class="content">
+           <h1>Tareq's Weather🌍</h1>
+
+           <form action="/weather" method="POST">
+               <input type="text" name="city" placeholder="Enter city name" required>
+               <button type="submit">Get Weather</button>
+           </form>
+
+           <% if (!currentWeather && !forecast && !error) { %>
+           <h2 style="color: green; padding: 20px; background-color: aquamarine;">Input your city name to get weather information👆</h2>
+           <% } %>
+
+           <% if (currentWeather) { %>
+           <div class="current-weather">
+            <h2>Current Weather in <%= currentWeather.city %>:</h2>
+            <p>Temperature: <%= currentWeather.temperature %> °C</p>
+            <p>Feels Like: <%= currentWeather.feels_like %> °C</p> <!-- Display feels-like temperature -->
+            <p>Description: <%= currentWeather.description %></p>
+            <p>Humidity: <%= currentWeather.humidity %>%</p>       <!-- Display humidity -->
+            <p>Wind Speed: <%= currentWeather.windSpeed %> m/s</p> <!-- Display wind speed -->
+           </div>
+           <% } %>
+
+           <% if (forecast) { %>
+            <div class="weather-info">
+                <h2>Weather forecast for <%= forecast.city %>:</h2>
+                <div class="forecast-container">
+                    <% forecast.items.forEach(forecast => { %>
+                        <div class="forecast-item">
+                            <h4><%= forecast.date %></h4>
+                            <p>Temp: <%= forecast.temperature %> °C</p>
+                            <p>Description: <%= forecast.description %></p>
+                            <p>Humidity: <%= forecast.humidity %>%</p>
+                            <p>Wind: <%= forecast.windSpeed %> m/s</p>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+           <% } %>
+
+           <% if (error) { %>
+           <p style="color: red;"><%= error %></p>
+           <% } %>
+       </main>
+       <footer>
+           <p>&copy; 2024 Tareq Faiz. All rights reserved.</p>
+       </footer>
+   </div>
+</body>
+</html>
