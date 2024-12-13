@@ -1,9 +1,12 @@
 import express from "express";
 import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const port = 3000;
-const apiKey = "9d9cf75e628fe9e0cbcd26da0fd0cf37"; // API key
+const apiKey = process.env.API_KEY;
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
